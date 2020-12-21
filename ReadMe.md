@@ -4,7 +4,7 @@
 
 - npm i express express-graphql graphql
 
-## Set-up User Test Interface
+### Set-up User Test Interface
 
 The "npm i express-graphql" has a function called "graphiql"; import this from "express-graphql" and set it to "true" within your GraphQL end point and you can access and trouble shoot your api via the browser similar to Postman.
 
@@ -22,7 +22,7 @@ app.use(
 
 ![graphiql](./readMePic/graphiql.png)
 
-## NonNull middleware
+### NonNull middleware
 
 - imported from "npm i graphql", this ensures a type will not return an empty or invalid value.
 
@@ -42,7 +42,7 @@ const albumType = new GraphQLObjectType({
 });
 ```
 
-## making tables extendable from each other
+### Extending Tables
 
 You reference another "GraphQLObjectType" from within a field to create a reference to another table.
 
