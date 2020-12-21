@@ -20,7 +20,7 @@ app.use(
 );
 ```
 
-[graphiql](./readMePic/graphiql.png)
+![graphiql](./readMePic/graphiql.png)
 
 ### NonNull middleware
 
