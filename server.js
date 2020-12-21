@@ -13,13 +13,28 @@ const {
   GraphQLNonNull,
 } = require("graphql");
 
-const albumType = new GraphQLObjectType({
+const AlbumType = new GraphQLObjectType({
   name: "Album",
   description: "This represents an album composed by an artist",
   fields: () => ({
     id: { type: GraphQLNonNull(GraphQLInt) },
     name: { type: GraphQLNonNull(GraphQLString) },
     artistId: { type: GraphQLNonNull(GraphQLInt) },
+    artist: {
+      type: ArtistType,
+      resolve: (album) => {
+        return artists.find((artist) => artist.id === album.artistId);
+      },
+    },
+  }),
+});
+
+const ArtistType = new GraphQLObjectType({
+  name: "Artist",
+  description: "This represents an album's composer.",
+  fields: () => ({
+    id: { type: GraphQLNonNull(GraphQLInt) },
+    name: { type: GraphQLNonNull(GraphQLString) },
   }),
 });
 
@@ -28,11 +43,15 @@ const RootQueryType = new GraphQLObjectType({
   description: "Root Query",
   fields: () => ({
     albums: {
-      type: new graphQLList(albumType),
+      type: new GraphQLList(AlbumType),
       description: "List of Great Listens.",
       resolve: () => albums,
     },
   }),
+});
+
+const schema = new GraphQLSchema({
+  query: RootQueryType,
 });
 
 app.use(

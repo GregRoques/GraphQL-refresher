@@ -14,3 +14,8 @@ const albums = [
   { id: 7, name: "Taking Up Your Precious Time", artistId: 3 },
   { id: 8, name: "Filling Up the City Skies", artistId: 3 },
 ];
+
+module.exports = {
+  artists,
+  albums,
+};

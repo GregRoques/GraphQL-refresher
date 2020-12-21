@@ -20,6 +20,8 @@ app.use(
 );
 ```
 
+[![graphiql](./readMePic/graphiql.png)]
+
 ### NonNull middleware
 
 - imported from "npm i graphql", this ensures a type will not return an empty or invalid value.
@@ -36,6 +38,30 @@ const albumType = new GraphQLObjectType({
     id: { type: GraphQLNonNull(GraphQLInt) },
     name: { type: GraphQLNonNull(GraphQLString) },
     artistId: { type: GraphQLNonNull(GraphQLInt) },
+  }),
+});
+```
+
+### making tables extendable from each other
+
+You reference another "GraphQLObjectType" from within a field to create a reference to another table.
+
+As seen where I call the resolve within the "artist" object, I pass the "parent" objectType as variable name album (or name it whatever you want) so that I can create a reference to return the fields I want.
+
+```
+const AlbumType = new GraphQLObjectType({
+  name: "Album",
+  description: "This represents an album composed by an artist",
+  fields: () => ({
+    id: { type: GraphQLNonNull(GraphQLInt) },
+    name: { type: GraphQLNonNull(GraphQLString) },
+    artistId: { type: GraphQLNonNull(GraphQLInt) },
+    artist: {
+      type: ArtistType,
+      resolve: (album) => {
+        return artists.find((artist) => artist.id === album.artistId);
+      },
+    },
   }),
 });
 ```
