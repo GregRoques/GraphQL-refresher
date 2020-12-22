@@ -5,7 +5,7 @@ const artists = [
 ];
 
 const albums = [
-  { id: 1, name: "Eyelig Movies", artistId: 1 },
+  { id: 1, name: "Eyelid Movies", artistId: 1 },
   { id: 2, name: "Nightlife", artistId: 1 },
   { id: 3, name: "Voices", artistId: 1 },
   { id: 4, name: "Since I Left You", artistId: 2 },
